@@ -1,0 +1,135 @@
+/* Container */
+.skills-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 450px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.skills-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Base Wheel - centered relative container */
+.skills-wheel {
+  position: relative;
+  width: 100px;
+  /* Small base, items positioned absolutely outwards */
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Central Hub */
+.skills-hub {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  background: #ffffff;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  box-shadow:
+    0 0 40px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(16, 185, 129, 0.1),
+    inset 0 0 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.skills-hub__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.skills-hub__icon svg {
+  width: 42px;
+  height: 42px;
+  filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));
+}
+
+.skills-hub__name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+
+/* Satellite Item */
+.skill-satellite {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  margin-top: -32px;
+  margin-left: -32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 5;
+  transition: transform 0.1s linear, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.skill-satellite.active,
+.skill-satellite:hover {
+  background: rgba(30, 41, 59, 1);
+  border-color: var(--primary);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+  z-index: 20;
+}
+
+.skill-satellite__inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Ensure icon is upright? The parent rotates around center, but doesn't rotate itself. */
+  /* If we wanted counter-rotation, we'd apply current -rotation here. */
+  /* But current logic translates x,y so no rotation transform is applied to parent div! */
+  /* So icons are ALWAYS upright. Perfect. */
+}
+
+/* Responsive fallback for very small screens */
+@media (max-width: 500px) {
+  .skills-container {
+    min-height: auto;
+  }
+
+  .skills-wheel {
+    margin: 3rem 0;
+    transform: scale(0.8);
+    /* Scale down the whole assembly */
+  }
+}
