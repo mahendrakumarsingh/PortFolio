@@ -1,12 +1,13 @@
 
 import projectChat from "../images/project-chat.png";
+import projectEcommerce from "../images/project-ecommerce.png";
 
 export const projects = [
     {
         title: "E-Commerce Platform",
         description:
             "Solves the problem of complex checkout flows — a streamlined shopping experience with cart management, secure payments, and order tracking.",
-        image: "/images/project-ecommerce.png",
+        image: projectEcommerce,
         tech: ["React", "Node", "MongoDB", "Stripe"],
         liveUrl: "https://your-ecommerce-demo.com",
         githubUrl: "https://github.com/yourusername/ecommerce"
