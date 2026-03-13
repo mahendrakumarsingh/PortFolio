@@ -51,10 +51,9 @@ function Resume() {
             </div>
           </div>
           <a
-            href="/resume.doc"
+            href="/resume.docx"
             className="btn btn--primary"
-            target="_blank"
-            rel="noreferrer"
+            download
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

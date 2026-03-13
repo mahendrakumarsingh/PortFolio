@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
+import Certificates from './components/Certificates';
 import TerminalSection from './components/TerminalSection';
 import Resume from './components/Resume';
 import Contact from './components/Contact';
@@ -26,6 +27,9 @@ function App() {
         </section>
         <section id="projects">
           <Projects />
+        </section>
+        <section id="certificates">
+          <Certificates />
         </section>
         <section id="terminal">
           <TerminalSection />
