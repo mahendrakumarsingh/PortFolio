@@ -1,14 +1,16 @@
 import React from "react";
 import "./Certificates.css";
 import { certificates } from "../data/certificates";
+import { Reveal } from "./Reveal";
 
 function Certificates() {
     return (
         <div className="section">
-            <h2 className="section__title">Certificates</h2>
+            <Reveal><h2 className="section__title">Certificates</h2></Reveal>
             <div className="certificates-grid">
-                {certificates.map((cert) => (
-                    <article key={cert.name} className="certificates-grid__card">
+                {certificates.map((cert, index) => (
+                  <Reveal key={cert.name} delay={index * 0.1}>
+                    <article className="certificates-grid__card">
                         <div className="certificates-grid__icon-wrapper">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -54,6 +56,7 @@ function Certificates() {
                             </div>
                         </div>
                     </article>
+                  </Reveal>
                 ))}
             </div>
         </div>

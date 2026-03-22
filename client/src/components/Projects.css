@@ -11,11 +11,12 @@
   box-shadow: var(--shadow-card);
   overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
 }
 
 .projects-grid__card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-glow);
+  /* Note: transform and shadow are managed synchronously by JS on hover */
   border-color: var(--secondary);
 }
 
@@ -97,31 +98,28 @@
 }
 
 .projects-grid__btn--primary {
-  background: #0f172a;
-  /* Dark Theme */
-  color: #fff;
+  background: var(--text);
+  color: var(--bg);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .projects-grid__btn--primary:hover {
-  background: #1e293b;
-  /* Slightly lighter on hover */
+  background: var(--text-secondary);
   transform: translateY(-2px);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 .projects-grid__btn--ghost {
-  background: #ffffff;
+  background: var(--surface);
   color: var(--text);
   border: 1px solid var(--border-strong);
   box-shadow: var(--shadow-sm);
 }
 
 .projects-grid__btn--ghost:hover {
-  background: #f8fafc;
+  background: var(--bg);
   border-color: var(--text-secondary);
   transform: translateY(-2px);
-  /* Add hover lift */
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   color: var(--primary);
 }

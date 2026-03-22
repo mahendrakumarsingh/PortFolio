@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import "./TerminalSection.css";
 
-const RESPONSES = {
-  help: "Commands: help, about, skills, projects, clear",
-  about: "MERN developer focused on clean UX and robust backend APIs.",
-  skills: "JS, React, Node, Express, MongoDB, Git, REST",
-  projects: "Check out the Projects section above for full case studies."
-};
-
 const INITIAL_HISTORY = [
   "portfolio-terminal v1.0",
   "Type `help` to see available commands."
@@ -16,6 +9,42 @@ const INITIAL_HISTORY = [
 function TerminalSection() {
   const [history, setHistory] = useState(INITIAL_HISTORY);
   const [input, setInput] = useState("");
+
+  const handleNavigation = (sectionId, name) => {
+    const el = document.getElementById(sectionId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      
+      // Briefly highlight the section to confirm interaction
+      el.classList.add("section-highlight");
+      setTimeout(() => {
+        el.classList.remove("section-highlight");
+      }, 1500);
+
+      return `Navigating to ${name}...`;
+    }
+    return `Error: Section '${name}' not found.`;
+  };
+
+  const handleResume = () => {
+    const link = document.createElement("a");
+    link.href = "/resume.docx";
+    link.download = "Resume.docx";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    return "Downloading resume.docx...";
+  };
+
+  const COMMAND_HANDLERS = {
+    help: () => "Commands: help, about, skills, projects, contact, resume, clear",
+    about: () => handleNavigation("about", "About"),
+    skills: () => handleNavigation("skills", "Skills"),
+    projects: () => handleNavigation("projects", "Projects"),
+    contact: () => handleNavigation("contact", "Contact"),
+    resume: () => handleResume(),
+    // 'clear' is handled explicitly in handleSubmit to clear state
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +55,8 @@ function TerminalSection() {
     if (cmd === 'clear') {
       setHistory(INITIAL_HISTORY);
     } else {
-      const response = RESPONSES[cmd] || `Command not found: ${cmd}`;
+      const handler = COMMAND_HANDLERS[cmd];
+      const response = handler ? handler() : `Command not found: ${cmd}`;
       setHistory((prev) => [...prev, `> ${cmd}`, response]);
     }
 
@@ -34,7 +64,7 @@ function TerminalSection() {
   };
 
   return (
-    <div className="section">
+    <div className="section" id="terminal">
       <h2 className="section__title">Terminal</h2>
       <div className="terminal">
         <div className="terminal__header">

@@ -20,16 +20,11 @@
   --gradient-accent: linear-gradient(135deg, #10b981, #34d399);
 
   --text: #0f172a;
-  /* Slate 900 */
   --text-secondary: #334155;
-  /* Slate 700 */
   --text-muted: #64748b;
-  /* Slate 500 */
 
   --border: #e2e8f0;
-  /* Slate 200 */
   --border-strong: #cbd5e1;
-  /* Slate 300 */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 
@@ -39,6 +34,23 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+[data-theme="dark"] {
+  --bg: #0b1120; /* Slate 950 essentially */
+  --surface: #0f172a; /* Slate 900 */
+  --primary: #10b981; 
+  --secondary: #94a3b8;
+  --accent: #34d399;
+  
+  --text: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --border: #1e293b;
+  --border-strong: #334155;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+  --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
 }
 
 * {
@@ -61,6 +73,7 @@ body {
   background-color: var(--bg);
   color: var(--text);
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
   /* Subtle background pattern */
   background-image:
     radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.1) 0px, transparent 50%),
@@ -103,21 +116,20 @@ button {
 }
 
 .btn--primary {
-  background: #0f172a;
-  /* Black button from reference */
-  color: #fff;
+  background: var(--text);
+  color: var(--bg);
   border: 1px solid transparent;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .btn--primary:hover {
-  background: #1e293b;
+  background: var(--text-secondary);
   transform: translateY(-2px);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 .btn--ghost {
-  background: #ffffff;
+  background: var(--surface);
   color: var(--text);
   border: 1px solid var(--border-strong);
   box-shadow: var(--shadow-sm);
@@ -125,7 +137,7 @@ button {
 
 .btn--ghost:hover {
   border-color: var(--text-secondary);
-  background: #f8fafc;
+  background: var(--bg);
   transform: translateY(-2px);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }

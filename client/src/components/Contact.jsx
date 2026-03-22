@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Contact.css";
+import { Reveal } from "./Reveal";
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -37,9 +38,9 @@ function Contact() {
 
   return (
     <div className="section contact-section">
-      <h2 className="section__title">Contact</h2>
+      <Reveal><h2 className="section__title">Contact</h2></Reveal>
       <div className="contact-content">
-        <div className="contact-content__form-wrapper">
+        <Reveal delay={0.1} className="contact-content__form-wrapper">
           <p className="contact-content__intro">
             Have a project in mind or want to collaborate? I'd love to hear from you.
             Drop me a message and I'll get back to you as soon as possible.
@@ -94,8 +95,8 @@ function Contact() {
               <p className="contact-status error">Failed to send message. Please try again.</p>
             )}
           </form>
-        </div>
-        <div className="contact-content__visual">
+        </Reveal>
+        <Reveal delay={0.2} className="contact-content__visual">
           <div className="contact-content__glow" />
           <div className="contact-visual">
             <div className="card-3d">
@@ -188,7 +189,7 @@ function Contact() {
               LinkedIn
             </a>
           </div>
-        </div>
+        </Reveal>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import "./Skills.css";
+import { Reveal } from "./Reveal";
 
 const skills = [
   {
@@ -114,52 +115,54 @@ function Skills() {
 
   return (
     <div className="section" ref={sectionRef}>
-      <h2 className="section__title">Skills</h2>
+      <Reveal><h2 className="section__title">Skills</h2></Reveal>
 
-      <div className={`skills-container ${isVisible ? "visible" : ""}`}>
-        <div
-          className="skills-wheel"
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => {
-            setIsHovering(false);
-            setHoveredSkill(null);
-          }}
-        >
-          {/* Central Hub */}
-          <div className="skills-hub">
-            <div className="skills-hub__content">
-              <span className="skills-hub__icon">{currentSkill.icon}</span>
-              <span className="skills-hub__name">{currentSkill.name}</span>
-            </div>
-          </div>
-
-          {/* Satellite Icons */}
-          {skills.map((skill, index) => {
-            const angleDeg = (index * (360 / TOTAL_SKILLS)) + rotation;
-            const angleRad = (angleDeg * Math.PI) / 180;
-            const x = Math.cos(angleRad) * RADIUS;
-            const y = Math.sin(angleRad) * RADIUS;
-
-            return (
-              <div
-                key={skill.name}
-                className={`skill-satellite ${skill === currentSkill ? "active" : ""}`}
-                style={{
-                  transform: `translate(${x}px, ${y}px)`,
-                }}
-                onMouseEnter={() => setHoveredSkill(skill)}
-              >
-                {/* Counter-rotate content to keep it upright */}
-                <div
-                  className="skill-satellite__inner"
-                >
-                  {skill.icon}
-                </div>
+      <Reveal delay={0.1}>
+        <div className={`skills-container ${isVisible ? "visible" : ""}`}>
+          <div
+            className="skills-wheel"
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => {
+              setIsHovering(false);
+              setHoveredSkill(null);
+            }}
+          >
+            {/* Central Hub */}
+            <div className="skills-hub">
+              <div className="skills-hub__content">
+                <span className="skills-hub__icon">{currentSkill.icon}</span>
+                <span className="skills-hub__name">{currentSkill.name}</span>
               </div>
-            );
-          })}
+            </div>
+
+            {/* Satellite Icons */}
+            {skills.map((skill, index) => {
+              const angleDeg = (index * (360 / TOTAL_SKILLS)) + rotation;
+              const angleRad = (angleDeg * Math.PI) / 180;
+              const x = Math.cos(angleRad) * RADIUS;
+              const y = Math.sin(angleRad) * RADIUS;
+
+              return (
+                <div
+                  key={skill.name}
+                  className={`skill-satellite ${skill === currentSkill ? "active" : ""}`}
+                  style={{
+                    transform: `translate(${x}px, ${y}px)`,
+                  }}
+                  onMouseEnter={() => setHoveredSkill(skill)}
+                >
+                  {/* Counter-rotate content to keep it upright */}
+                  <div
+                    className="skill-satellite__inner"
+                  >
+                    {skill.icon}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      </Reveal>
     </div>
   );
 }

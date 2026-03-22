@@ -1,13 +1,14 @@
 import React from "react";
 import "./About.css";
 import profileImg from "../images/profile.png";
+import { Reveal } from "./Reveal";
 
 function About() {
   return (
     <div className="section">
-      <h2 className="section__title">About Me</h2>
+      <Reveal><h2 className="section__title">About Me</h2></Reveal>
       <div className="about-content">
-        <div className="about-content__text">
+        <Reveal delay={0.1} className="about-content__text">
           <p>
             I'm <strong>Mahendra Kumar Singh</strong>, a developer who loves
             understanding how things work behind the scenes. I enjoy solving
@@ -18,8 +19,8 @@ function About() {
             applications. What makes me different is my mindset — I don't just
             code to make things run, I learn deeply to understand <em>why</em> they work.
           </p>
-        </div>
-        <div className="about-content__image">
+        </Reveal>
+        <Reveal delay={0.2} className="about-content__image">
           <div className="about-content__image-wrapper">
             {/* Replace src with your actual photo path */}
             <img
@@ -29,7 +30,7 @@ function About() {
             />
             <div className="about-content__image-border" />
           </div>
-        </div>
+        </Reveal>
       </div>
     </div>
   );

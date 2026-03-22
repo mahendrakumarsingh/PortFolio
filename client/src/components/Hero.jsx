@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import Hero3D from "./Hero3D";
 import "./Hero.css";
 
 function Hero() {
@@ -62,11 +63,7 @@ function Hero() {
           </div>
         </div>
         <div className="hero__image">
-          <img
-            src="https://cdni.iconscout.com/illustration/premium/thumb/web-development-2974925-2477356.png"
-            alt="Web Development Illustration"
-            className="hero__illustration"
-          />
+          <Hero3D />
         </div>
       </div>
     </div>

@@ -7,19 +7,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(15, 23, 42, 0.9);
-  /* Dark background */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.5); /* Transparent for better glass effect */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Softer border */
   z-index: 20;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease; /* Smoother transition */
 }
 
 .navbar--scrolled {
   padding: 0.8rem 2rem;
-  background: rgba(15, 23, 42, 0.95);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  background: rgba(15, 23, 42, 0.85); /* Slightly darker */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 20px -1px rgba(0, 0, 0, 0.3);
 }
 
 .navbar__brand {
@@ -28,41 +29,57 @@
   font-size: 1.5rem;
   color: #fff;
   font-family: serif;
-  /* Matching the "BOXCARS" serif style slightly */
 }
 
 .navbar__brand-dot {
   color: #38bdf8;
-  /* Light blue accent */
   font-weight: 400;
 }
 
 .navbar__links {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem; /* slightly wider gap for floating text */
 }
 
 .navbar__link {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  color: #fff;
-  font-size: 0.9rem;
-  padding: 0.5rem 1.5rem;
-  border-radius: 999px;
+  border: none;
+  color: #94a3b8; /* text-secondary slate-400 */
+  font-size: 0.95rem;
+  padding: 0.5rem 0.2rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: color 0.3s ease;
   font-weight: 500;
   letter-spacing: 0.5px;
+  position: relative;
 }
 
-.navbar__link:hover,
+/* Base state for the animated underline */
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: #10b981; /* match theme accent */
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.navbar__link:hover {
+  color: #f8fafc;
+}
+
+/* Active Highlight */
 .navbar__link.active {
-  background: #fff;
-  color: #0f172a;
-  /* Dark background color for text */
-  border-color: #fff;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.navbar__link:hover::after,
+.navbar__link.active::after {
+  width: 100%;
 }
 
 @media (max-width: 768px) {

@@ -86,3 +86,24 @@
 .terminal__input:focus {
   outline: none;
 }
+
+/* Global Section Highlight Animation */
+@keyframes sectionGlow {
+  0% {
+    background-color: transparent;
+    box-shadow: 0 0 0 rgba(16, 185, 129, 0) inset;
+  }
+  20% {
+    background-color: rgba(16, 185, 129, 0.05); /* very subtle tint matching theme */
+    box-shadow: 0 0 40px rgba(16, 185, 129, 0.15) inset;
+  }
+  100% {
+    background-color: transparent;
+    box-shadow: 0 0 0 rgba(16, 185, 129, 0) inset;
+  }
+}
+
+.section-highlight {
+  animation: sectionGlow 1.5s cubic-bezier(0.17, 0.55, 0.55, 1);
+  border-radius: 1rem;
+}
